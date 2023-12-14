@@ -44,6 +44,21 @@
     state: stopped
   become: true
 
+# TODO make this conditional on which OS in use
+# The below works on Almalinux8 not tested elsewhere
+# Might be something to put in prechecks later
+- name: Install EPEL GPG key
+  ansible.builtin.rpm_key:
+    key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
+    state: present
+  become: true
+
+- name: Install EPEL release package
+  ansible.builtin.dnf:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    state: present
+  become: true
+
 - name: ECS Anywhere | Install python3-docker
   ansible.builtin.yum:
     name: python3-docker
