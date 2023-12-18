@@ -20,7 +20,3 @@ galaxy_info:
     - aws
     - centos
     - rhel
-
-dependencies:
-  - name: geerlingguy.docker
-    when: ecs_anywhere_include_docker_role | default(true)
